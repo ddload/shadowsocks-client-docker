@@ -11,4 +11,4 @@ RUN apt-get update && \
 RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/shadowsocks-libev &&  cd /tmp/shadowsocks-libev && dpkg-buildpackage -us -uc -i && cd /tmp && dpkg -i shadowsocks-libev*.deb
 
 # Configure container to run as an executable
-ENTRYPOINT ["/usr/local/bin/sslocal"]
+ENTRYPOINT ["/usr/bin/sslocal"]
