@@ -5,12 +5,12 @@
 FROM debian:stable
 MAINTAINER ddload<ddload@gmail.com>
 
-RUN apt-get update
-RUN apt-get install -y wget
-RUN echo "deb http://shadowsocks.org/debian stable main" >> /etc/apt/sources.list
-RUN wget -O- http://shadowsocks.org/debian/1D27208A.gpg | apt-key add -
-RUN apt-get update && \
-    apt-get install -y shadowsocks-libev
+RUN apt-get update %% \
+    apt-get install build-essential autoconf libtool libssl-dev \
+    gawk debhelper dh-systemd init-system-helpers pkg-config git wget
+RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/shadowsocks-libev
+RUN cd /tmp/shadowsocks-libev && dpkg-buildpackage -us -uc -i
+RUN cd /tmp && dpkg -i shadowsocks-libev*.deb
 
 # Configure container to run as an executable
 ENTRYPOINT ["/usr/local/bin/sslocal"]
