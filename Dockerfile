@@ -1,4 +1,4 @@
-# shadowsocks
+# shadowsocks-client
 #
 # VERSION 0.0.3
 
