@@ -5,7 +5,7 @@
 FROM debian:stable
 MAINTAINER ddload<ddload@gmail.com>
 
-RUN apt-get update %% \
+RUN apt-get update && \
     apt-get install build-essential autoconf libtool libssl-dev \
     gawk debhelper dh-systemd init-system-helpers pkg-config git wget
 RUN git clone https://github.com/shadowsocks/shadowsocks-libev.git /tmp/shadowsocks-libev
